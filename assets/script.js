@@ -8,23 +8,23 @@ const questions = [
         
       },
       {
-        question: 'placeholder question #2',
-        answers: ['A', 'B', 'C', 'D', 'E'],
+        question: 'Which personality trait(s) resonates with you the most?',
+        answers: ['Calm, cool, and collected', 'Friendly', 'Sarcastic', 'Patriotic', 'I am Groot'],
         
       },
       {
-        question: 'placeholder question #3',
-        answers: ['A', 'B', 'C', 'D', 'E'],
+        question: 'If you were a superhero, what would be your signature weapon/ability?',
+        answers: ['Glock 26', 'Spiderwebs', 'Katana blades', 'Shield', 'I am Groot'],
         
       },
       {
-        question: 'placeholder question #4',
-        answers: ['A', 'B', 'C', 'D', 'E'],
+        question: 'Who would you want to fight crime with?',
+        answers: ['Natasha Romanoff', 'Peter Parker', 'Wade Winston Wilson', 'Steve Rogers', 'I am Groot'],
         
       },
       {
-        question: 'placeholder question #5',
-        answers: ['A', 'B', 'C', 'D', 'E'],
+        question: 'What is your favorite MCU movie?',
+        answers: ['Black Widow', 'Spiderman', 'Deadpool', 'Captain America', 'Guardians of the Galaxy'],
         
       }
 ];
