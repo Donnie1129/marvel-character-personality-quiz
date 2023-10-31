@@ -1,4 +1,4 @@
-
+//This is the question and answers for the quiz iteslf
 const questions = [
     {
         question: 'Where would you go on a dream vacation? ',
@@ -26,7 +26,8 @@ const questions = [
         
       }
 ];
-const characters = ["Deadpool", "Captain America", "Groot", "Spider-Man (Peter Parker)", "Black Widow"];
+const characters = ["Deadpool", "Captain America", "Groot", "Spider-Man (Peter Parker)", "Black Widow"]; //variable that stores the characters names as an array
+
 
 let ts = new Date().getTime();
 const privateKey = "c25596d5c722b3ccb5c94d495df884a0e237d83e";
@@ -36,7 +37,8 @@ const baseUrl = "https://gateway.marvel.com/v1/public/characters";
 
 let characterData = [];
 
-characters.forEach(character => {
+characters.forEach(character => { // a fetch function that runs for each of the 5 characters to query their character information
+
     fetch(`${baseUrl}?name=${character}&ts=${ts}&apikey=${publicKey}&hash=${hash}`)
         .then(response => response.json())
         .then(data => {
@@ -56,3 +58,42 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
   .catch(error => {
     console.log('Error:', error);
   });
+
+
+
+
+  // on loading the page, we'll need to come back to this and likely create
+  // a window.onload = function (resets the quiz)
+    
+ 
+  // On clicking "start quiz button", eventlistener #1 + runs function clearOutAndAskName
+    const getStartedButton = document.getElementById ("get-started-btn");
+    const submitNameButton = document.createElement ('button'); // used in submitFirstName function and is the event listener #2
+
+
+    getStartedButton.addEventListener ('click', submitFirstName);
+    function submitFirstName () {
+      // TO DO: clears out the landing page, clear out the elements on the landing page (or set css element to hide/none)
+      let firstNameModal = document.createElement('input'); // creates input element; this is the modal, but we'll style with tailwind later
+      firstNameModal.className = "firsNameModal"; // use this class name for styling via tailwind or css file
+      submitNameButton.className = 'theButtonClass' // add some display with styling
+      // TO DO: Add placeholder value "Insert your first name here"
+
+      // After adding name and clicking "start", eventlistener #2
+      submitNameButton.addEventListener ('click', startQuizFunction)
+    }
+
+    function startQuizFunction () {
+    // Get elementbyID and save as a variable in local storage
+    // startQuiz() --> similar to the coding quiz challenge
+
+    }
+
+
+    
+   
+
+
+
+  let firstNameInput = document.createElement('input');
+  firstNameInput.type = 'text';
