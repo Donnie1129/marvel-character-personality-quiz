@@ -1,0 +1,15 @@
+.text-5xl {
+    font-weight: 900;
+    color: white;
+}
+
+.text-2xl {
+    font-weight: 900;
+    color: white;
+}
+.custom-button {
+    font-size: xxx-large;
+    background-color: rgb(241, 21, 31);
+    color: white;
+    border-radius: 8px;
+}

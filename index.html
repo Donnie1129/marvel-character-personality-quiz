@@ -3,30 +3,25 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta http-equiv="X-UA-Compatible" content="ie-edge">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
   </head>
-
-<body>
-  <div class="bg-cover h-48 w-64" style="background-image: url('https://tailwind.build/placeholders/pictures/office.jpg')"></div>
-  <nav>
-
-  </nav>
-  <main>
-<section>
-  
-  <h1 class="border-red-800 border-4 p-8">Become a superhero today. Take the quiz to power up!</h1>
-  <p> Take our quiz to find out which superhero matches your personality. Click the start button to begin.</p>
-</section>
-
-</main>
-
-
-<footer>
-  <p> created by Team Avengers</p>
-  <p> checkout some of our other work here:</p>
-</footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
-  <script src="assets/script.js"></script>
-</body>
+  <body class="bg-cover bg-center" style="background-image: url('assets/images/Marvel\ Background.jpg');">
+    <div class="min-h-screen flex flex-col justify-between items-center">
+      <div class="text-white text-center mb-8 max-w-screen-md">
+        <h1 class="text-5xl">Which Marvel Character are you most like?</h1>
+        <p class="text-2xl mt-4">Take this quiz and find out!</p>
+      </div>
+      <div class="mb-40">
+        <button class="custom-button animate-pulse">Get Started</button>
+      </div>
+    </div>
+    <footer class="absolute bottom-0 right-0 p-4 text-white">
+      <p>Created by Team Avengers</p>
+      <p>Check out some of our other work <a href="#">here</a></p>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/crypto-js.js"></script>
+    <script src="assets/script.js"></script>
+  </body>
+</html>
