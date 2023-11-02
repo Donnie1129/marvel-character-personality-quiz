@@ -121,7 +121,7 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
 
     function submitFirstName () {
       // TO DO: clears out the landing page, clear out the elements on the landing page (or set css element to hide/none)
-      let firstNameModal = document.getElementsById('name'); // creates input element; this is the modal, but we'll style with tailwind later
+      let firstNameModal = document.getElementById('name'); // creates input element; this is the modal, but we'll style with tailwind later
       firstNameModal.className = "show"; // use this class name for styling via tailwind or css file
       submitNameButton.className = 'theButtonClass' // add some display with styling
      
