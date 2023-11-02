@@ -2,27 +2,61 @@
 const questions = [
     {
         question: 'Where would you go on a dream vacation? ',
-        answers: ['Undisclosed location', 'New York City', 'Hawaii', 'Paris', 'I am Groot'],
+        answers: [
+          {text: "Undisclosed location", character: BlackWidow},
+          {text: "New York City", character: SpiderMan},
+          {text: "Hawaii", character: DeadPool},
+          {text: "Paris", character: CaptainAmerica},
+          {text: "I am Groot", character: Groot},
+        ]
         
       },
+
       {
         question: 'Which personality trait(s) resonates with you the most?',
-        answers: ['Calm, cool, and collected', 'Friendly', 'Sarcastic', 'Patriotic', 'I am Groot'],
+        answers: [
+          {text: "Calm, cool, and collected", character: BlackWidow},
+          {text: "Friendly", character: SpiderMan},
+          {text: "Sarcastic", character: DeadPool},
+          {text: "Patriotic", character: CaptainAmerica},
+          {text: "I am Groot", character: Groot},
+        ]
         
       },
+
       {
         question: 'If you were a superhero, what would be your signature weapon/ability?',
-        answers: ['Glock 26', 'Spiderwebs', 'Katana blades', 'Shield', 'I am Groot'],
+        answers: [
+          {text: "Glock 26", character: BlackWidow},
+          {text: "Spiderwebs", character: SpiderMan},
+          {text: "Katana blades", character: DeadPool},
+          {text: "Shield", character: CaptainAmerica},
+          {text: "I am Groot", character: Groot},
+        ]
         
       },
+
       {
         question: 'Who would you want to fight crime with?',
-        answers: ['Natasha Romanoff', 'Peter Parker', 'Wade Winston Wilson', 'Steve Rogers', 'I am Groot'],
+        answers: [
+          {text: "Natasha Romanoff", character: BlackWidow},
+          {text: "Peter Parker", character: SpiderMan},
+          {text: "Wade Winston Wilson", character: DeadPool},
+          {text: "Steve Rogers", character: CaptainAmerica},
+          {text: "I am Groot", character: Groot},
+        ]
         
       },
+
       {
         question: 'What is your favorite MCU movie?',
-        answers: ['Black Widow', 'Spiderman', 'Deadpool', 'Captain America', 'Guardians of the Galaxy'],
+        answers: [
+          {text: "Black Widow", character: BlackWidow},
+          {text: "Spiderman", character: SpiderMan},
+          {text: "Deadpool", character: DeadPool},
+          {text: "Captain America", character: CaptainAmerica},
+          {text: "Guardians of the Galaxy", character: Groot},
+        ]
         
       }
 ];
@@ -86,7 +120,7 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     function startQuizFunction () {
     // Get elementbyID and save as a variable in local storage
     // startQuiz() --> similar to the coding quiz challenge
-
+      
     }
 
 
