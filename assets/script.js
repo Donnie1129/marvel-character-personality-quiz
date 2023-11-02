@@ -55,13 +55,18 @@ const questions = [
           {text: "Spiderman", character: SpiderMan},
           {text: "Deadpool", character: DeadPool},
           {text: "Captain America", character: CaptainAmerica},
-          {text: "Guardians of the Galaxy", character: Groot},
+          {text: "I am Groot", character: Groot},
         ]
         
       }
 ];
 const characters = ["Deadpool", "Captain America", "Groot", "Spider-Man (Peter Parker)", "Black Widow"]; //variable that stores the characters names as an array
-
+let currentQuestionIndex = 0;
+let BlackWidowScore = 0;
+let SpiderManScore = 0;
+let DeadPoolScore = 0;
+let CaptainAmericaScore = 0;
+let GrootScore = 0;
 
 let ts = new Date().getTime();
 const privateKey = "c25596d5c722b3ccb5c94d495df884a0e237d83e";
@@ -100,34 +105,33 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
   // a window.onload = function (resets the quiz)
     
  
-  // On clicking "start quiz button", eventlistener #1 + runs function clearOutAndAskName
-    const getStartedButton = document.getElementById ("get-started-btn");
-    const submitNameButton = document.createElement ('button'); // used in submitFirstName function and is the event listener #2
+    const getStartedButton = document.getElementById("get-started-btn");
+    const submitNameButton = document.createElement('button'); // used in submitFirstName function and is the event listener #2
+    let firstName = ''; // declaring firstName variable 
+    const nextButton = document.createElement('button'); // used in startQuizFunction 
+    getStartedButton.addEventListener('click', submitFirstName);
+    nextButton.addEventListener('click', showQuestion);
 
-
-    getStartedButton.addEventListener ('click', submitFirstName);
     function submitFirstName () {
       // TO DO: clears out the landing page, clear out the elements on the landing page (or set css element to hide/none)
       let firstNameModal = document.createElement('input'); // creates input element; this is the modal, but we'll style with tailwind later
       firstNameModal.className = "firsNameModal"; // use this class name for styling via tailwind or css file
       submitNameButton.className = 'theButtonClass' // add some display with styling
       // TO DO: Add placeholder value "Insert your first name here"
-
+      
       // After adding name and clicking "start", eventlistener #2
-      submitNameButton.addEventListener ('click', startQuizFunction)
+      submitNameButton.addEventListener('click', startQuizFunction)
     }
 
     function startQuizFunction () {
-    // Get elementbyID and save as a variable in local storage
-    // startQuiz() --> similar to the coding quiz challenge
+      // Get elementbyID and save as a variable in local storage
+      const firstNameInput = document.getElementById('input').value ;
+      firstName = localStorage.setItem(firstName, firstNameInput);
+      // startQuiz() --> similar to the coding quiz challenge
+      showQuestion (); 
       
     }
 
-
-    
-   
-
-
-
-  let firstNameInput = document.createElement('input');
+// TO DO: create showQuestion function
+  
   firstNameInput.type = 'text';
