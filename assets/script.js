@@ -60,7 +60,14 @@ const questions = [
         
       }
 ];
-const characters = ["Deadpool", "Captain America", "Groot", "Spider-Man (Peter Parker)", "Black Widow"]; //variable that stores the characters names as an array
+
+var BlackWidow = "Black Widow";
+var SpiderMan = "Spider-Man (Peter Parker)";
+var DeadPool = "Deadpool";
+var CaptainAmerica = "Captain America";
+var Groot = "Groot";
+
+const character = ["Deadpool", "Captain America", "Groot", "Spider-Man (Peter Parker)", "Black Widow"]; //variable that stores the characters names as an array
 let currentQuestionIndex = 0;
 let BlackWidowScore = 0;
 let SpiderManScore = 0;
@@ -76,7 +83,7 @@ const baseUrl = "https://gateway.marvel.com/v1/public/characters";
 
 let characterData = [];
 
-characters.forEach(character => { // a fetch function that runs for each of the 5 characters to query their character information
+character.forEach(character => { // a fetch function that runs for each of the 5 characters to query their character information
 
     fetch(`${baseUrl}?name=${character}&ts=${ts}&apikey=${publicKey}&hash=${hash}`)
         .then(response => response.json())
@@ -105,7 +112,7 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
   // a window.onload = function (resets the quiz)
     
  
-    const getStartedButton = document.getElementById("get-started-btn");
+    const getStartedButton = document.getElementById('get-started-btn');
     const submitNameButton = document.createElement('button'); // used in submitFirstName function and is the event listener #2
     let firstName = ''; // declaring firstName variable 
     const nextButton = document.createElement('button'); // used in startQuizFunction 
@@ -114,10 +121,10 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
 
     function submitFirstName () {
       // TO DO: clears out the landing page, clear out the elements on the landing page (or set css element to hide/none)
-      let firstNameModal = document.createElement('input'); // creates input element; this is the modal, but we'll style with tailwind later
-      firstNameModal.className = "firsNameModal"; // use this class name for styling via tailwind or css file
+      let firstNameModal = document.getElementsById('name'); // creates input element; this is the modal, but we'll style with tailwind later
+      firstNameModal.className = "show"; // use this class name for styling via tailwind or css file
       submitNameButton.className = 'theButtonClass' // add some display with styling
-      // TO DO: Add placeholder value "Insert your first name here"
+     
       
       // After adding name and clicking "start", eventlistener #2
       submitNameButton.addEventListener('click', startQuizFunction)
@@ -133,5 +140,7 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     }
 
 // TO DO: create showQuestion function
+    function showQuestion () {
+      console.log('it worked');
+    }
   
-  firstNameInput.type = 'text';
