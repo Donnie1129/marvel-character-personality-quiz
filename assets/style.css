@@ -7,15 +7,23 @@
     font-weight: 900;
     color: white;
 }
-.custom-button {
+#get-started-btn {
     font-size: xxx-large;
     background-color: rgb(241, 21, 31);
     color: white;
     border-radius: 8px;
 }
-.custom-button-2 {
+/* .custom-button-2 {
     font-size: xx-large;
     background-color: white;
     color:black;
     border-radius: 8px;
+} */
+
+.hide {
+    display: none;
+}
+
+.show {
+    display: block;
 }
