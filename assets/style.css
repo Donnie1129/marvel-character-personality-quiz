@@ -8,7 +8,7 @@
     color: white;
 }
 #get-started-btn {
-    font-size: xxx-large;
+    /* font-size: xxx-large; */
     background-color: rgb(241, 21, 31);
     color: white;
     border-radius: 8px;
@@ -22,6 +22,17 @@
     display: block;
 }
 
+
+#name {
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease;
+    transform-origin: center;
+  }
+
+  .custom-blur {
+    backdrop-filter: blur(10px); /* Increase px value as needed for a stronger effect */
+  }
+
 .bg-cover {
     background-image: url('assets/images/Marvel Image.jpg');
 }
+
