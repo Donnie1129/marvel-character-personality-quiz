@@ -113,18 +113,69 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     
  
     const getStartedButton = document.getElementById('get-started-btn');
+    const overlay = document.getElementById('overlay'); // used for blur effect
     const submitNameButton = document.createElement('button'); // used in submitFirstName function and is the event listener #2
+
+    const firstNameModal = document.getElementById('name'); // creates input element; this is the modal, but we'll style with tailwind later
+
     let firstName = ''; // declaring firstName variable 
     const nextButton = document.createElement('button'); // used in startQuizFunction 
-    getStartedButton.addEventListener('click', submitFirstName);
+    // getStartedButton.addEventListener('click', submitFirstName);
     nextButton.addEventListener('click', showQuestion);
+  
+
+    // Function to show the name input and apply blur effect to background
+    function showNameInput() {
+      // Toggle classes to scale up the input and show it
+      firstNameModal.classList.toggle('transform');
+      firstNameModal.classList.toggle('scale-100');
+      firstNameModal.classList.toggle('opacity-100');
+      firstNameModal.classList.toggle('hidden');
+    
+      const interactiveArea = document.getElementById('interactive-area');
+    
+      // Ensure to remove the original margin-bottom when positioning it fixed
+      interactiveArea.classList.remove('mb-40');
+    
+      // Apply flexbox centering
+      interactiveArea.classList.toggle('flex');
+      interactiveArea.classList.toggle('flex-col');
+      interactiveArea.classList.toggle('items-center');
+      interactiveArea.classList.toggle('justify-center');
+    
+      // Apply fixed positioning and centering
+      interactiveArea.classList.toggle('fixed');
+      interactiveArea.classList.toggle('inset-0');
+      interactiveArea.classList.toggle('mx-auto');
+      interactiveArea.classList.toggle('top-1/2');
+      interactiveArea.classList.toggle('left-1/2');
+      interactiveArea.classList.toggle('-translate-x-1/2');
+      interactiveArea.classList.toggle('-translate-y-1/2');
+      interactiveArea.classList.toggle('z-10');
+    
+      // Toggle classes to show and apply blur effect to the overlay
+      overlay.classList.toggle('hidden');
+      overlay.classList.toggle('backdrop-blur-xl');
+      overlay.classList.toggle('custom-blur');
+    
+      // Adjust the width and height of the input and button
+      firstNameModal.classList.add('w-64', 'h-20');
+      getStartedButton.classList.add('w-64', 'h-10');
+    }
+
+    // Event listener for the 'Get Started' button
+    getStartedButton.addEventListener('click', showNameInput);
+
+    // end of test
+
+
 
     function submitFirstName () {
       // TO DO: clears out the landing page, clear out the elements on the landing page (or set css element to hide/none)
-      let firstNameModal = document.getElementById('name'); // creates input element; this is the modal, but we'll style with tailwind later
       firstNameModal.className = "show"; // use this class name for styling via tailwind or css file
       submitNameButton.className = 'theButtonClass' // add some display with styling
      
+
       
       // After adding name and clicking "start", eventlistener #2
       submitNameButton.addEventListener('click', startQuizFunction)
