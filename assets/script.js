@@ -113,10 +113,11 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     // const nextButton = document.createElement('button'); // used in startQuizFunction 
     getStartedButton.addEventListener('click', submitFirstName);
     // nextButton.addEventListener('click', showQuestion);
+    let firstNameModal = document.getElementById('name'); // creates input element; this is the modal, but we'll style with tailwind later
+    let paragraph = document.getElementsByClassName('text-2xl');
 
     function submitFirstName () {
       // TO DO: clears out the landing page, clear out the elements on the landing page (or set css element to hide/none)
-      let firstNameModal = document.getElementById('name'); // creates input element; this is the modal, but we'll style with tailwind later
       firstNameModal.className = "show"; // use this class name for styling via tailwind or css file
       // submitNameButton.className = 'theButtonClass' // add some display with styling
       getStartedButton.textContent = 'Start Quiz';
@@ -136,8 +137,14 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
       
     }
 
+    var bodyElement = document.body;
 // TO DO: create showQuestion function
     function showQuestion () {
+      bodyElement.style.backgroundImage = 'url("assets/images/questionBackground.jpg")';
+      firstNameModal.style.display = "none";
+      getStartedButton.textContent = 'next question';
+      for (let i = 0; i < paragraph.length; i++) {
+        paragraph[i].style.display = "none";
+      }
       console.log('it worked');
     }
-  
