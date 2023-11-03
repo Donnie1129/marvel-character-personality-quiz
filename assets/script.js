@@ -167,11 +167,11 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
 
 
 
-    let firstName = ''; // declaring firstName variable 
+    // let firstName = ''; // declaring firstName variable 
     // const nextButton = document.createElement('button'); // used in startQuizFunction 
     getStartedButton.addEventListener('click', submitFirstName);
     // nextButton.addEventListener('click', showQuestion);
-    let firstNameModal = document.getElementById('name'); // creates input element; this is the modal, but we'll style with tailwind later
+    // let firstNameModal = document.getElementById('name'); // creates input element; this is the modal, but we'll style with tailwind later
     let paragraph = document.getElementsByClassName('text-2xl');
 
 
