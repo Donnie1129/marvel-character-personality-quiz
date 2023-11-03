@@ -207,4 +207,10 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
         paragraph[i].style.display = "none";
       }
       console.log('it worked');
+      //eventlistener for getStartedButton (click, nextQuestion)
     }
+    
+  
+    //Create nextQuestion function that displays the next index (++i)
+    //Create submitResults function that checks the total score for each character; runs characterResult function
+    //Create characterResult function with Marvel API fetch data
