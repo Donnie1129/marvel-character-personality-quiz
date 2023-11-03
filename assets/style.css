@@ -13,12 +13,6 @@
     color: white;
     border-radius: 8px;
 }
-/* .custom-button-2 {
-    font-size: xx-large;
-    background-color: white;
-    color:black;
-    border-radius: 8px;
-} */
 
 .hide {
     display: none;
@@ -28,6 +22,7 @@
     display: block;
 }
 
+
 #name {
     transition: transform 0.5s ease-in-out, opacity 0.5s ease;
     transform-origin: center;
@@ -36,3 +31,8 @@
   .custom-blur {
     backdrop-filter: blur(10px); /* Increase px value as needed for a stronger effect */
   }
+
+.bg-cover {
+    background-image: url('assets/images/Marvel Image.jpg');
+}
+
