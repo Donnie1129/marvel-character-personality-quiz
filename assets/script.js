@@ -247,25 +247,44 @@ if (currentQuestionIndex < questions.length) {
 }
 
 }
-// Cocktail DB API
-// TODO: finish logic and test functionality
-const cocktailBaseUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
-const cocktailPublicKey = '1';
+// Cocktail DB API 
+// (FYI: the variables drinkName/Recipe/Image/Ingredients can be used later in a function like "showResults" for example 
+// so as to display all that data that was extracted)
+const cocktailBaseUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php"; // this particular link randomly selects a drink; using this for simplicity purposes
+const cocktailPublicKey = '1'; //API website states we use this API key for testing purposes
 
-function fetchCocktailData() {
-  fetch(`${cocktailBaseUrl}/filter.php?i=`)
-      .then(response => response.json())
-      .then(data => {
-          // Process the retrieved data and display relevant information
-          console.log(data);
+// tentative TODO: declare const's outside of fetch scope in order to access it in other fx's
+
+fetch(`${cocktailBaseUrl}/filter.php?i=`)
+    .then(response => response.json())
+    .then(data => {
+      // Process the retrieved data and display relevant information
+      if (data.drinks && data.drinks.length > 0) {
+        const drink = data.drinks[0]; // accessing first drink object 
+
+        const drinkName = drink.strDrink; // extracting drink name from json data
+        const drinkRecipe = drink.strInstructions; // extracting instructions from json data
+        const drinkImage = drink.strDrinkThumb; // extracting drink thumbnail image from json data
+        const drinkIngredients = []; // creating list/array of all drink ingredients from json data
+          // Using a For Loop to extract each ingredient from json data and adding it to the drinkIngredient array
+        for (let i = 1; i <= 15; i++) {
+            const ingredient = drink[`strIngredient${i}`];
+            if (ingredient) {
+                drinkIngredients.push(ingredient);
+            } else {
+                break; // Stop the loop if we encounter a null value
+            }
+        }
+        // end For Loop
+        console.log(drinkName);
+        console.log(drinkRecipe);
+        console.log(drinkIngredients);
+        }
       })
-      .catch(error => {
-          console.log('Error:', error);
-      });
- // return data; need to store keys for instructions, drink name, image etc into indivudal variables
- // and then return those variables to the function that called it so that data can be accessed later
- // in other fx's eg showResults
-}
+    .catch(error => {
+        console.log('Error:', error);
+    });
+
 // end API 
 
 function handleAnswerSelection(event) {
@@ -273,7 +292,6 @@ function handleAnswerSelection(event) {
   const selectedCharacter = event.target.value;
   // Add your logic to update scores or do something with the selected answer
   // Move to the next question
-  showQuestion();  
-  fetchCocktailData();
+  showQuestion(); 
 
 }
