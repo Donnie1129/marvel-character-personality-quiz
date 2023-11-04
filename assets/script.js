@@ -75,8 +75,8 @@ let DeadPoolScore = 0;
 let CaptainAmericaScore = 0;
 let GrootScore = 0;
 
-let ts = new Date().getTi me();
-const privateKey = "c2559 6d5c722b3ccb5c94d495df884a0e237d83e";
+let ts = new Date().getTime();
+const privateKey = "c25596d5c722b3ccb5c94d495df884a0e237d83e";
 const publicKey = "80daa3778422ffa68ae1546ef689f700";
 let hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
 const baseUrl = "https://gateway.marvel.com/v1/public/characters";
