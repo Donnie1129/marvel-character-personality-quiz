@@ -7,22 +7,20 @@
     font-weight: 900;
     color: white;
 }
+
 #get-started-btn {
-    /* font-size: xxx-large; */
     background-color: rgb(241, 21, 31);
     color: white;
     border-radius: 8px;
 }
 
 #start-quiz-button {
-    /* font-size: xxx-large; */
     background-color: rgb(241, 21, 31);
     color: white;
     border-radius: 8px;
 
 }
 .custom-color {
-    /* font-size: xxx-large; */
     background-color: rgb(241, 21, 31);
     color: white;
     border-radius: 8px;
