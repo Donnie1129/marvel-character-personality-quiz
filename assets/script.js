@@ -75,8 +75,8 @@ let DeadPoolScore = 0;
 let CaptainAmericaScore = 0;
 let GrootScore = 0;
 
-let ts = new Date().getTime();
-const privateKey = "c25596d5c722b3ccb5c94d495df884a0e237d83e";
+let ts = new Date().getTi me();
+const privateKey = "c2559 6d5c722b3ccb5c94d495df884a0e237d83e";
 const publicKey = "80daa3778422ffa68ae1546ef689f700";
 let hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
 const baseUrl = "https://gateway.marvel.com/v1/public/characters";
@@ -109,16 +109,17 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     
  
     const getStartedButton = document.getElementById('get-started-btn');
+    const StartQuizButton = document.getElementById('start-quiz-button');
 
     const overlay = document.getElementById('overlay'); // used for blur effect
-    const submitNameButton = document.createElement('button'); // used in submitFirstName function and is the event listener #2
+    // const submitNameButton = document.createElement('button'); // used in submitFirstName function and is the event listener #2
 
     const firstNameModal = document.getElementById('name'); // creates input element; this is the modal, but we'll style with tailwind later
 
     let firstName = ''; // declaring firstName variable 
-    const nextButton = document.createElement('button'); // used in startQuizFunction 
+    // const nextButton = document.createElement('button'); // used in startQuizFunction 
     // getStartedButton.addEventListener('click', submitFirstName);
-    nextButton.addEventListener('click', showQuestion);
+    // nextButton.addEventListener('click', showQuestion);
   
 
     // Function to show the name input and apply blur effect to background
@@ -158,18 +159,21 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
       // Adjust the width and height of the input and button
       firstNameModal.classList.add('w-64', 'h-20');
       getStartedButton.classList.add('w-64', 'h-10');
+      getStartedButton.classList.add("hidden");
+      StartQuizButton.classList.remove("hidden");
+      submitFirstName ()
+      //StartQuizButton.addEventListener('click', submitFirstName);
     }
 
     // Event listener for the 'Get Started' button
     getStartedButton.addEventListener('click', showNameInput);
-
     // end of test
 
 
 
     // let firstName = ''; // declaring firstName variable 
     // const nextButton = document.createElement('button'); // used in startQuizFunction 
-    getStartedButton.addEventListener('click', submitFirstName);
+    
     // nextButton.addEventListener('click', showQuestion);
     // let firstNameModal = document.getElementById('name'); // creates input element; this is the modal, but we'll style with tailwind later
     let paragraph = document.getElementsByClassName('text-2xl');
@@ -179,15 +183,15 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
       // TO DO: clears out the landing page, clear out the elements on the landing page (or set css element to hide/none)
       firstNameModal.className = "show"; // use this class name for styling via tailwind or css file
       // submitNameButton.className = 'theButtonClass' // add some display with styling
-      getStartedButton.textContent = 'Start Quiz';
-     
+  
 
       
       // After adding name and clicking "start", eventlistener #2
-      getStartedButton.addEventListener('click', startQuizFunction)
+      StartQuizButton.addEventListener('click', startQuizFunction);
     }
 
     function startQuizFunction () {
+      overlay.classList.add('hidden');
       console.log("quiz started");
       // Get elementbyID and save as a variable in local storage
       const firstNameInput = document.getElementById('name').value ;
@@ -202,9 +206,50 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     function showQuestion () {
       bodyElement.style.backgroundImage = 'url("assets/images/questionBackground.jpg")';
       firstNameModal.style.display = "none";
-      getStartedButton.textContent = 'next question';
-      for (let i = 0; i < paragraph.length; i++) {
+      StartQuizButton.textContent = 'next question';
+      StartQuizButton.classList.add('hidden');
+      for (let i = 0; i < paragraph.length; ++i) {
         paragraph[i].style.display = "none";
       }
-      console.log('it worked');
-    }
+
+
+const answerChoicesContainer = document.getElementById('answer-choices');
+
+  // Clear the previous answer choices
+  answerChoicesContainer.innerHTML = '';
+
+  // Check if there are more questions
+  if (currentQuestionIndex < questions.length) {
+    const currentQuestion = questions[currentQuestionIndex];
+    const currentQuestionText = currentQuestion.question;
+    document.getElementById('quiz-question').textContent = currentQuestionText;
+
+    // Create and display answer choices
+    currentQuestion.answers.forEach((answer) => {
+      const button = document.createElement('button');
+      button.textContent = answer.text;
+      button.value = answer.character; // You can use this value to track the selected answer
+      button.classList.add('answer-button', 'block', 'w-full', 'py-2', 'px-4', 'text-center', 'custom-color', 'text-white', 'rounded-md', 'hover-custom-color-2', 'my-2'); // Add classes for styling
+      button.addEventListener('click', handleAnswerSelection); // Add a click event listener
+      answerChoicesContainer.appendChild(button);
+    });
+
+    // Update the "Get Started" button text
+
+
+    // Move to the next question
+    currentQuestionIndex++;
+  } else {
+    // Handle the end of the quiz or any other logic
+  }
+
+}
+
+function handleAnswerSelection(event) {
+  // You can access the selected answer using event.target.value
+  const selectedCharacter = event.target.value;
+  // Add your logic to update scores or do something with the selected answer
+
+  // Move to the next question
+  showQuestion();
+}
