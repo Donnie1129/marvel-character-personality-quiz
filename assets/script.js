@@ -75,6 +75,7 @@ let DeadPoolScore = 0;
 let CaptainAmericaScore = 0;
 let GrootScore = 0;
 
+// Marvel API
 let ts = new Date().getTime();
 const privateKey = "c25596d5c722b3ccb5c94d495df884a0e237d83e";
 const publicKey = "80daa3778422ffa68ae1546ef689f700";
@@ -103,6 +104,8 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
 .catch(error => {
   console.log('Error:', error);
 });
+
+
 
 // on loading the page, we'll need to come back to this and likely create
 // a window.onload = function (resets the quiz)
@@ -244,12 +247,33 @@ if (currentQuestionIndex < questions.length) {
 }
 
 }
+// Cocktail DB API
+// TODO: finish logic and test functionality
+const cocktailBaseUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+const cocktailPublicKey = '1';
+
+function fetchCocktailData(selectedCharacter) {
+  fetch(`${cocktailBaseUrl}/filter.php?i=${selectedCharacter}`)
+      .then(response => response.json())
+      .then(data => {
+          // Process the retrieved data and display relevant information
+          console.log(data);
+      })
+      .catch(error => {
+          console.log('Error:', error);
+      });
+ // return data; need to store keys for instructions, drink name, image etc into indivudal variables
+ // and then return those variables to the function that called it so that data can be accessed later
+ // in other fx's eg showResults
+}
+// end API 
 
 function handleAnswerSelection(event) {
-// You can access the selected answer using event.target.value
-const selectedCharacter = event.target.value;
-// Add your logic to update scores or do something with the selected answer
+  // You can access the selected answer using event.target.value
+  const selectedCharacter = event.target.value;
+  // Add your logic to update scores or do something with the selected answer
+  // Move to the next question
+  showQuestion();  
+  fetchCocktailData(selectedCharacter);
 
-// Move to the next question
-showQuestion();
 }
