@@ -252,8 +252,8 @@ if (currentQuestionIndex < questions.length) {
 const cocktailBaseUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 const cocktailPublicKey = '1';
 
-function fetchCocktailData(selectedCharacter) {
-  fetch(`${cocktailBaseUrl}/filter.php?i=${selectedCharacter}`)
+function fetchCocktailData() {
+  fetch(`${cocktailBaseUrl}/filter.php?i=`)
       .then(response => response.json())
       .then(data => {
           // Process the retrieved data and display relevant information
@@ -274,6 +274,6 @@ function handleAnswerSelection(event) {
   // Add your logic to update scores or do something with the selected answer
   // Move to the next question
   showQuestion();  
-  fetchCocktailData(selectedCharacter);
+  fetchCocktailData();
 
 }
