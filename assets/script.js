@@ -171,29 +171,18 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
   
     const interactiveArea = document.getElementById('interactive-area');
   
-    // Ensure to remove the original margin-bottom when positioning it fixed
-    interactiveArea.classList.remove('mb-40');
+    // Ensure to remove any classes that could conflict with centering
+    interactiveArea.className = '';
   
-    // Apply flexbox centering
-    interactiveArea.classList.toggle('flex');
-    interactiveArea.classList.toggle('flex-col');
-    interactiveArea.classList.toggle('items-center');
-    interactiveArea.classList.toggle('justify-center');
-  
-    // Apply fixed positioning and centering
-    interactiveArea.classList.toggle('fixed');
-    interactiveArea.classList.toggle('inset-0');
-    interactiveArea.classList.toggle('mx-auto');
-    interactiveArea.classList.toggle('top-1/2');
-    interactiveArea.classList.toggle('left-1/2');
-    interactiveArea.classList.toggle('-translate-x-1/2');
-    interactiveArea.classList.toggle('-translate-y-1/2');
-    interactiveArea.classList.toggle('z-10');
-  
-    // Toggle classes to show and apply blur effect to the overlay
-    overlay.classList.toggle('hidden');
-    overlay.classList.toggle('backdrop-blur-xl');
-    overlay.classList.toggle('custom-blur');
+    // Apply fixed positioning and centering without toggling
+    interactiveArea.style.position = 'fixed';
+    interactiveArea.style.top = '50%';
+    interactiveArea.style.left = '50%';
+    interactiveArea.style.transform = 'translate(-50%, -50%)';
+
+    // Apply blur effect to the overlay without toggling
+    overlay.classList.remove('hidden');
+    overlay.classList.add('backdrop-blur-xl', 'custom-blur');
   
     // Adjust the width and height of the input and button
     firstNameModal.classList.add('w-64', 'h-20');
@@ -203,10 +192,10 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     getStartedButton.classList.add("hidden");
     StartQuizButton.classList.remove("hidden");
     
-    submitFirstName ()
+    submitFirstName();
     const footer = document.getElementById('footer');
     footer.style.display = "none";
-    //StartQuizButton.addEventListener('click', submitFirstName);
+    // The previous event listener registration seems unnecessary if you're calling the function directly.
   }
 
   // Event listener for the 'Get Started' button
