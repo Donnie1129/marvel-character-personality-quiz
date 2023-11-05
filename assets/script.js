@@ -330,17 +330,82 @@ function handleAnswerSelection(event) {
   if (currentQuestionIndex < questions.length) {
     showQuestion(); 
   } else {
-      endQuiz();
+      calculateCharacterScore();
+      characterResults();
   }
   }
 
-  function characterResults (){
-  console.log ('quiz done!'
-  )
+function calculateCharacterScore() {
+    // Create an array of score objects for each character
+    const scores = [
+      { character: BlackWidow, score: BlackWidowScore },
+      { character: SpiderMan, score: SpiderManScore },
+      { character: DeadPool, score: DeadPoolScore },
+      { character: CaptainAmerica, score: CaptainAmericaScore },
+      { character: Groot, score: GrootScore }
+    ];
+  
+    // Sort the scores array based on the score in descending order
+    // If two characters have the same score, the first one in the array stays first
+    scores.sort((a, b) => b.score - a.score);
+  
+    // Now the first object in the array has the highest score
+    // If there's a tie, it would be the first among the highest due to our sorting method
+    const highestScoreCharacter = scores[0];
+  
+    // You can return this character or do something with it
+    console.log('Character with highest score:', highestScoreCharacter.character);
+  
+    // If you want to proceed with displaying results or further processing, you can call those functions here
+    characterResults(highestScoreCharacter.character);
+  
+    // For now, let's just return the character with the highest score
+    return highestScoreCharacter;
+};
+
+
+function characterResults (highestScoreCharacterName){
+  console.log ('here is your character');
+
+  //code to change the innerhtml conent of the paragraph/header
+  const questionHeader = document.getElementById ('quiz-question');
+  questionHeader.innerHTML = `You matched with: ${highestScoreCharacterName}`; 
+  //code to hide the answer buttons
+  const answerChoicesContainer = document.getElementById('answer-choices');
+  answerChoicesContainer.innerHTML = '';
+
+  fetchMarvelData(highestScoreCharacter);
+
+  //code to create new element to display character description API answers
+
+
+  //code to display drink API recipe results
+
 }
 
-function characterResults (){
-  console.log ('here is your character')
-}
+// function fetchMarvelData(characterName) {
+//   // Use the Marvel API URL for fetching character data
+
+//   fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
+//     .then(response => response.json())
+//     .then(data => {
+//       displayCharacterData(data.data.results[0]);
+//     })
+//     .catch(error => console.error('Error fetching Marvel data:', error));
+// }
+
+// function displayCharacterData(characterData) {
+//   const answerChoicesContainer = document.getElementById('answer-choices');
+//   // Assuming characterData has the properties: name, description, thumbnail, and resourceURI
+//   const htmlContent = `
+//     <h2>${characterData.name}</h2>
+//     <p>${characterData.description}</p>
+//     <img src="${characterData.thumbnail.path}.${characterData.thumbnail.extension}" alt="${characterData.name}">
+//     <p>More info: <a href="${characterData.resourceURI}">Click here</a></p>
+//   `;
+
+//   answerChoicesContainer.innerHTML = htmlContent;
+// }
+
 
 fetchCocktailAPI();
