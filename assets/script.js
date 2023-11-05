@@ -113,8 +113,8 @@ let globalHighestScoreCharacter = '';
 
 // Marvel API
 let ts = new Date().getTime();
-const privateKey = "c25596d5c722b3ccb5c94d495df884a0e237d83e";
-const publicKey = "80daa3778422ffa68ae1546ef689f700";
+const privateKey = "d1eb19471a9fee8d17874c446cc8db97a87f29ba";
+const publicKey = "84ec6a9bf12d1bd4604c3bd7f6446803";
 let hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
 const baseUrl = "https://gateway.marvel.com/v1/public/characters";
 
@@ -500,6 +500,15 @@ function generateCharacterDrink() {
       console.error('Error fetching cocktail:', error);
       document.getElementById('drinkDisplay').innerHTML = `<p>Sorry, we couldn't fetch the drink.</p>`;
     });
+    resetQuizButton.classList.remove('hidden');
 }
 
 fetchCocktailAPI();
+
+var resetQuizButton = document.getElementById('reset-quiz-button');
+resetQuizButton.addEventListener('click',reloadPage);
+
+
+function reloadPage() {
+  location.reload(); // or window.location.reload();
+}

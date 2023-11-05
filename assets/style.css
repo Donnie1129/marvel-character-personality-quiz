@@ -22,7 +22,12 @@ footer {
     background-color: rgb(241, 21, 31);
     color: white;
     border-radius: 8px;
+}
 
+#reset-quiz-button {
+    background-color: rgb(241, 21, 31);
+    color: white;
+    border-radius: 8px;
 }
 .custom-color {
     background-color: rgb(241, 21, 31);
