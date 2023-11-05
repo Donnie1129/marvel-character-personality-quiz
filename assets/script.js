@@ -6,6 +6,39 @@ var DeadPool = "Deadpool";
 var CaptainAmerica = "Captain America";
 var Groot = "Groot";
 
+const charactersInfo = {
+  'Black Widow': {
+    description: 'A former KGB assassin turned Avenger.',
+    personality: 'Resourceful, determined, and skilled in combat.',
+    abilities: 'Expert martial artist, master in the covert arts of espionage, weaponry, and sniping.',
+    popularMovies: ['Iron Man 2', 'Avengers: Endgame']
+  },
+  'Spider-Man (Peter Parker)': {
+    description: 'A young hero balancing his life with his responsibilities as Spider-Man.',
+    personality: 'Witty, intelligent, and a bit awkward.',
+    abilities: 'Superhuman strength, agility, and spider-sense that alerts him to danger.',
+    popularMovies: ['Spider-Man: Homecoming', 'Spider-Man: Far From Home']
+  },
+  'Deadpool': {
+    description: 'The Merc with a Mouth, he\'s an unpredictable antihero.',
+    personality: 'Sarcastic, talkative, and mentally unstable.',
+    abilities: 'Regenerative healing factor, skilled marksman and swordsman.',
+    popularMovies: ['Deadpool', 'Deadpool 2']
+  },
+  'Captain America': {
+    description: 'A World War II veteran who was enhanced to the peak of human perfection.',
+    personality: 'Honorable, brave, and a natural leader.',
+    abilities: 'Super soldier strength, expert tactician, and skilled with his unbreakable shield.',
+    popularMovies: ['Captain America: The First Avenger', 'Captain America: Civil War']
+  },
+  'Groot': {
+    description: 'A tree-like humanoid, Groot has a big heart and is fiercely loyal.',
+    personality: 'Gentle and caring, yet powerful and imposing.',
+    abilities: 'Regenerative healing, can grow in size, and has considerable strength.',
+    popularMovies: ['Guardians of the Galaxy', 'Guardians of the Galaxy Vol. 2']
+  }
+};
+
 const questions = [
   {
       question: 'Where would you go on a dream vacation? ',
@@ -67,8 +100,6 @@ const questions = [
       
     }
 ];
-
-
 
 const character = ["Deadpool", "Captain America", "Groot", "Spider-Man (Peter Parker)", "Black Widow"]; //variable that stores the characters names as an array
 let currentQuestionIndex = 0;
@@ -173,6 +204,8 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     StartQuizButton.classList.remove("hidden");
     
     submitFirstName ()
+    const footer = document.getElementById('footer');
+    footer.style.display = "none";
     //StartQuizButton.addEventListener('click', submitFirstName);
   }
 
@@ -370,7 +403,7 @@ function characterResults (globalHighestScoreCharacter){
 
   //code to change the innerhtml conent of the paragraph/header
   const questionHeader = document.getElementById ('quiz-question');
-  questionHeader.innerHTML = `You matched with: ${globalHighestScoreCharacter}`; 
+  questionHeader.innerHTML = `You matched with ${globalHighestScoreCharacter}`; 
   //code to hide the answer buttons
   const answerChoicesContainer = document.getElementById('answer-choices');
   answerChoicesContainer.innerHTML = '';
@@ -414,15 +447,23 @@ function fetchMarvelData(globalHighestScoreCharacter) {
 
 function displayCharacterData(characterData) {
   const answerChoicesContainer = document.getElementById('answer-choices');
-  // Assuming characterData has the properties: name, description, thumbnail, and resourceURI
-  const htmlContent = `
-    <h1>${characterData.name}</h1>
-    <p>${characterData.description}</p>
-    <img src="${characterData.thumbnail.path}.${characterData.thumbnail.extension}" alt="${characterData.name}">
-    <p>More info: <a href="${characterData.resourceURI}">Click here</a></p>
-  `;
 
+  // Access the additional information from the charactersInfo object
+  const extraInfo = charactersInfo[characterData.name];
+
+  const htmlContent = `
+  <img src="${characterData.thumbnail.path}.${characterData.thumbnail.extension}" alt="${characterData.name}">
+  <h1>${characterData.name}</h1>
+  <p><span class="red-bold">Description:</span> ${extraInfo.description}</p>
+  <p><span class="red-bold">Personality:</span> ${extraInfo.personality}</p>
+  <p><span class="red-bold">Abilities:</span> ${extraInfo.abilities}</p>
+  <p><span class="red-bold">Popular Movies:</span> ${extraInfo.popularMovies.join(', ')}</p>
+`;
   answerChoicesContainer.innerHTML = htmlContent;
+  const footer = document.getElementById('footer');
+  footer.style.display = "none";
+
+  
 }
 
 
