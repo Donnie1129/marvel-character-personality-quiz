@@ -294,42 +294,40 @@ const cocktailPublicKey = '1'; //API website states we use this API key for test
 
 // This function is used for a cocktail database API Get Request.
 // It returns the JSON data for drinkName, drinkRecipe, drinkImage, and drinkIngredients.
-function fetchCocktailAPI () {
-  fetch(`${cocktailBaseUrl}/filter.php?i=`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.drinks && data.drinks.length > 0) {
-          const drink = data.drinks[0]; // accessing the first drink object 
-          // extracting relevant JSON data
-          const drinkName = drink.strDrink; 
-          const drinkRecipe = drink.strInstructions; 
-          const drinkImage = drink.strDrinkThumb; 
-          const drinkIngredients = []; // creating list/array of all drink ingredients 
-          
-          // Using a For Loop to extract each ingredient from json data and adding it to the drinkIngredient array
-          for (let i = 1; i <= 15; i++) {
-              const ingredient = drink[`strIngredient${i}`];
-              if (ingredient) {
-                  drinkIngredients.push(ingredient);
-              } else {
-                  break; // Stop the loop if we encounter a null value
-              }
+function fetchCocktailAPI() {
+  return fetch(`${cocktailBaseUrl}/filter.php?i=`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.drinks && data.drinks.length > 0) {
+        let drink = data.drinks[0];
+        // creating an array of all drink ingredients
+        const drinkName = drink.strDrink; 
+        const drinkRecipe = drink.strInstructions; 
+        const drinkImage = drink.strDrinkThumb; 
+        let drinkIngredients = [];
+        for (let i = 1; i <= 15; i++) {
+          let ingredient = drink[`strIngredient${i}`];
+          if (ingredient) {
+            drinkIngredients.push(ingredient);
+          } else {
+            break; // Stop the loop if no more ingredients are found
           }
-          // verifying data is retrieved
-          console.log(drinkName);
-          console.log(drinkRecipe);
-          console.log(drinkIngredients);
-          console.log(drinkImage);
-
-          return (drinkName, drinkRecipe, drinkIngredients, drinkImage);
-          }
-          
-        })
-      .catch(error => {
-          console.log('Error:', error);
-      });
-      
-    };
+        }
+        return {
+          drinkName: drink.strDrink,
+          drinkRecipe: drink.strInstructions,
+          drinkIngredients: drinkIngredients,
+          drinkImage: drink.strDrinkThumb
+        };
+      } else {
+        throw new Error('No drinks found');
+      }
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      throw error; // Rethrowing the error to be caught by the calling function
+    });
+}
 // end API 
 
 function handleAnswerSelection(event) {
@@ -451,20 +449,57 @@ function displayCharacterData(characterData) {
   // Access the additional information from the charactersInfo object
   const extraInfo = charactersInfo[characterData.name];
 
-  const htmlContent = `
-  <img src="${characterData.thumbnail.path}.${characterData.thumbnail.extension}" alt="${characterData.name}">
-  <h1>${characterData.name}</h1>
-  <p><span class="red-bold">Description:</span> ${extraInfo.description}</p>
-  <p><span class="red-bold">Personality:</span> ${extraInfo.personality}</p>
-  <p><span class="red-bold">Abilities:</span> ${extraInfo.abilities}</p>
-  <p><span class="red-bold">Popular Movies:</span> ${extraInfo.popularMovies.join(', ')}</p>
-`;
-  answerChoicesContainer.innerHTML = htmlContent;
+  // Set the inner HTML of the container first
+  answerChoicesContainer.innerHTML = `
+    <img src="${characterData.thumbnail.path}.${characterData.thumbnail.extension}" alt="${characterData.name}">
+    <h1>${characterData.name}</h1>
+    <p><span class="red-bold">Description:</span> ${extraInfo.description}</p>
+    <p><span class="red-bold">Personality:</span> ${extraInfo.personality}</p>
+    <p><span class="red-bold">Abilities:</span> ${extraInfo.abilities}</p>
+    <p><span class="red-bold">Popular Movies:</span> ${extraInfo.popularMovies.join(', ')}</p>
+  `;
+
+  // Now create the button
+  let drinkButton = document.createElement('button');
+  drinkButton.id = 'start-quiz-button';
+  drinkButton.textContent = `Drink Like ${characterData.name}`;
+  drinkButton.classList.add('show');
+
+  // Append the button after setting the inner HTML
+  answerChoicesContainer.appendChild(drinkButton);
+
+  // Add the event listener to the button
+  drinkButton.addEventListener('click', generateCharacterDrink);
+
+
+  // Hide the footer
   const footer = document.getElementById('footer');
   footer.style.display = "none";
-
-  
 }
 
+function generateCharacterDrink() {
+  fetchCocktailAPI()
+    .then(data => {
+      if (data) {
+        let drinkName = data.drinkName;
+        let drinkRecipe = data.drinkRecipe;
+        let drinkIngredients = data.drinkIngredients.join(', ');
+        let drinkImage = data.drinkImage;
+        
+        const drinkHtml = `
+          <h2><span class="red-bold">Drink Name: </span>${drinkName}</h2>
+          <img src="${drinkImage}" alt="Drink image">
+          <p><span class="red-bold">Drink Recipe: </span>${drinkRecipe}</p>
+          <p><span class="red-bold">Ingredients: </span>${drinkIngredients}</p>
+        `;
+
+        document.getElementById('answer-choices').innerHTML = drinkHtml;
+      }
+    })
+    .catch(error => {
+      console.error('Error fetching cocktail:', error);
+      document.getElementById('drinkDisplay').innerHTML = `<p>Sorry, we couldn't fetch the drink.</p>`;
+    });
+}
 
 fetchCocktailAPI();
