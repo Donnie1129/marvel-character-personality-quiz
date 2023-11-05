@@ -75,6 +75,7 @@ let DeadPoolScore = 0;
 let CaptainAmericaScore = 0;
 let GrootScore = 0;
 
+// Marvel API
 let ts = new Date().getTime();
 const privateKey = "c25596d5c722b3ccb5c94d495df884a0e237d83e";
 const publicKey = "80daa3778422ffa68ae1546ef689f700";
@@ -103,6 +104,8 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
 .catch(error => {
   console.log('Error:', error);
 });
+
+
 
 // on loading the page, we'll need to come back to this and likely create
 // a window.onload = function (resets the quiz)
@@ -244,12 +247,57 @@ if (currentQuestionIndex < questions.length) {
 }
 
 }
+// Cocktail DB API metadata
+const cocktailBaseUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php"; // this particular link randomly selects a drink; using this for simplicity purposes
+const cocktailPublicKey = '1'; //API website states we use this API key for testing purposes
+
+// This function is used for a cocktail database API Get Request.
+// It returns the JSON data for drinkName, drinkRecipe, drinkImage, and drinkIngredients.
+function fetchCocktailAPI () {
+  fetch(`${cocktailBaseUrl}/filter.php?i=`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.drinks && data.drinks.length > 0) {
+          const drink = data.drinks[0]; // accessing the first drink object 
+          // extracting relevant JSON data
+          const drinkName = drink.strDrink; 
+          const drinkRecipe = drink.strInstructions; 
+          const drinkImage = drink.strDrinkThumb; 
+          const drinkIngredients = []; // creating list/array of all drink ingredients 
+          
+          // Using a For Loop to extract each ingredient from json data and adding it to the drinkIngredient array
+          for (let i = 1; i <= 15; i++) {
+              const ingredient = drink[`strIngredient${i}`];
+              if (ingredient) {
+                  drinkIngredients.push(ingredient);
+              } else {
+                  break; // Stop the loop if we encounter a null value
+              }
+          }
+          // verifying data is retrieved
+          console.log(drinkName);
+          console.log(drinkRecipe);
+          console.log(drinkIngredients);
+          console.log(drinkImage);
+
+          return (drinkName, drinkRecipe, drinkIngredients, drinkImage);
+          }
+          
+        })
+      .catch(error => {
+          console.log('Error:', error);
+      });
+      
+    };
+// end API 
 
 function handleAnswerSelection(event) {
-// You can access the selected answer using event.target.value
-const selectedCharacter = event.target.value;
-// Add your logic to update scores or do something with the selected answer
+  // You can access the selected answer using event.target.value
+  const selectedCharacter = event.target.value;
+  // Add your logic to update scores or do something with the selected answer
+  // Move to the next question
+  showQuestion(); 
 
-// Move to the next question
-showQuestion();
 }
+
+fetchCocktailAPI();
