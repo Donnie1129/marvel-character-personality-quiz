@@ -113,8 +113,8 @@ let globalHighestScoreCharacter = '';
 
 // Marvel API
 let ts = new Date().getTime();
-const privateKey = "c25596d5c722b3ccb5c94d495df884a0e237d83e";
-const publicKey = "80daa3778422ffa68ae1546ef689f700";
+const privateKey = "d1eb19471a9fee8d17874c446cc8db97a87f29ba";
+const publicKey = "84ec6a9bf12d1bd4604c3bd7f6446803";
 let hash = CryptoJS.MD5(ts + privateKey + publicKey).toString();
 const baseUrl = "https://gateway.marvel.com/v1/public/characters";
 
@@ -175,8 +175,10 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     interactiveArea.className = '';
   
     // Apply fixed positioning and centering without toggling
-    interactiveArea.classList.add('justify-center', 'fixed', 'inset-0', 'mx-auto', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2', 'z-10');
-  
+    interactiveArea.style.position = 'fixed';
+    interactiveArea.style.top = '50%';
+    interactiveArea.style.left = '50%';
+    interactiveArea.style.transform = 'translate(-50%, -50%)';  
     // Apply blur effect to the overlay without toggling
     overlay.classList.remove('hidden');
     overlay.classList.add('backdrop-blur-xl', 'custom-blur');
@@ -449,6 +451,13 @@ function displayCharacterData(characterData) {
   let drinkButton = document.createElement('button');
   drinkButton.id = 'start-quiz-button';
   drinkButton.textContent = `Drink Like ${characterData.name}`;
+  drinkButton.style.position = 'fixed';
+  drinkButton.style.top = '50%';
+  drinkButton.style.left = '50%';
+  drinkButton.style.transform = 'translate(-50%, -50%)';
+  drinkButton.style.display = 'block';
+
+
   drinkButton.classList.add('show');
 
   // Append the button after setting the inner HTML
