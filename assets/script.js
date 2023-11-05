@@ -1,4 +1,11 @@
 //This is the question and answers for the quiz iteslf
+
+var BlackWidow = "Black Widow";
+var SpiderMan = "Spider-Man (Peter Parker)";
+var DeadPool = "Deadpool";
+var CaptainAmerica = "Captain America";
+var Groot = "Groot";
+
 const questions = [
   {
       question: 'Where would you go on a dream vacation? ',
@@ -61,11 +68,7 @@ const questions = [
     }
 ];
 
-var BlackWidow = "Black Widow";
-var SpiderMan = "Spider-Man (Peter Parker)";
-var DeadPool = "Deadpool";
-var CaptainAmerica = "Captain America";
-var Groot = "Groot";
+
 
 const character = ["Deadpool", "Captain America", "Groot", "Spider-Man (Peter Parker)", "Black Widow"]; //variable that stores the characters names as an array
 let currentQuestionIndex = 0;
@@ -294,9 +297,38 @@ function fetchCocktailAPI () {
 function handleAnswerSelection(event) {
   // You can access the selected answer using event.target.value
   const selectedCharacter = event.target.value;
-  // Add your logic to update scores or do something with the selected answer
+
+  // Increase the score for the selected character
+  switch (selectedCharacter) {
+    case BlackWidow:
+      BlackWidowScore++;
+      console.log('Black Widow score increased!');
+      break;
+    case SpiderMan:
+      SpiderManScore++;
+      console.log('Spider-Man score increased!');
+      break;
+    case DeadPool:
+      DeadPoolScore++;
+      console.log('Deadpool score increased!');
+      break;
+    case CaptainAmerica:
+      CaptainAmericaScore++;
+      console.log('Captain America score increased!');
+      break;
+    case Groot:
+      GrootScore++;
+      console.log('Groot score increased!');
+      break;
+    default:
+      console.log('No character score updated');
+  }
+
+
+
   // Move to the next question
   showQuestion(); 
+
 
 }
 
