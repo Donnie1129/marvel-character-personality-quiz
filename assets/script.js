@@ -165,8 +165,11 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     // Adjust the width and height of the input and button
     firstNameModal.classList.add('w-64', 'h-20');
     getStartedButton.classList.add('w-64', 'h-10');
+    StartQuizButton.classList.add('w-64', 'h-10');
+
     getStartedButton.classList.add("hidden");
     StartQuizButton.classList.remove("hidden");
+    
     submitFirstName ()
     //StartQuizButton.addEventListener('click', submitFirstName);
   }
@@ -324,12 +327,20 @@ function handleAnswerSelection(event) {
       console.log('No character score updated');
   }
 
+  if (currentQuestionIndex < questions.length) {
+    showQuestion(); 
+  } else {
+      endQuiz();
+  }
+  }
 
+  function characterResults (){
+  console.log ('quiz done!'
+  )
+}
 
-  // Move to the next question
-  showQuestion(); 
-
-
+function characterResults (){
+  console.log ('here is your character')
 }
 
 fetchCocktailAPI();

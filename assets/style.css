@@ -52,3 +52,9 @@
 .bg-cover {
     background-image: url('assets/images/Marvel Image.jpg');
 }
+
+#name, #start-quiz-button {
+    box-sizing: border-box;
+    padding: 0.75rem 1rem; /* Example padding, adjust as needed */
+    border-width: 2px; /* Example border width, adjust as needed */
+  }
