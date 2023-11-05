@@ -175,11 +175,8 @@ fetch(`${baseUrl}?ts=${ts}&apikey=${publicKey}&hash=${hash}`)
     interactiveArea.className = '';
   
     // Apply fixed positioning and centering without toggling
-    interactiveArea.style.position = 'fixed';
-    interactiveArea.style.top = '50%';
-    interactiveArea.style.left = '50%';
-    interactiveArea.style.transform = 'translate(-50%, -50%)';
-
+    interactiveArea.classList.add('justify-center', 'fixed', 'inset-0', 'mx-auto', 'top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2', 'z-10');
+  
     // Apply blur effect to the overlay without toggling
     overlay.classList.remove('hidden');
     overlay.classList.add('backdrop-blur-xl', 'custom-blur');
