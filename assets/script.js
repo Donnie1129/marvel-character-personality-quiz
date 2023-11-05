@@ -495,6 +495,15 @@ function generateCharacterDrink() {
       console.error('Error fetching cocktail:', error);
       document.getElementById('drinkDisplay').innerHTML = `<p>Sorry, we couldn't fetch the drink.</p>`;
     });
+    resetQuizButton.classList.remove('hidden');
 }
 
 fetchCocktailAPI();
+
+var resetQuizButton = document.getElementById('reset-quiz-button');
+resetQuizButton.addEventListener('click',reloadPage);
+
+
+function reloadPage() {
+  location.reload(); // or window.location.reload();
+}
