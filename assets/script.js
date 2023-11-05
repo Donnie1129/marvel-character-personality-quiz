@@ -451,14 +451,16 @@ function displayCharacterData(characterData) {
   let drinkButton = document.createElement('button');
   drinkButton.id = 'start-quiz-button';
   drinkButton.textContent = `Drink Like ${characterData.name}`;
-  drinkButton.style.position = 'fixed';
-  drinkButton.style.top = '50%';
-  drinkButton.style.left = '50%';
-  drinkButton.style.transform = 'translate(-50%, -50%)';
-  drinkButton.style.display = 'block';
+  // drinkButton.style.position = 'fixed';
+  // drinkButton.style.top = '50%';
+  // drinkButton.style.left = '50%';
+  // drinkButton.style.transform = 'translate(-50%, -50%)';
+  // drinkButton.style.display = 'block';
 
 
   drinkButton.classList.add('show');
+  drinkButton.classList.add('mx-auto', 'w-auto');
+
 
   // Append the button after setting the inner HTML
   answerChoicesContainer.appendChild(drinkButton);
