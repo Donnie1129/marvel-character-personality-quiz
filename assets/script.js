@@ -299,16 +299,16 @@ function fetchCocktailAPI () {
       .then(response => response.json())
       .then(data => {
         if (data.drinks && data.drinks.length > 0) {
-          const drink = data.drinks[0]; // accessing the first drink object 
+          let drink = data.drinks[0]; // accessing the first drink object 
           // extracting relevant JSON data
-          const drinkName = drink.strDrink; 
-          const drinkRecipe = drink.strInstructions; 
-          const drinkImage = drink.strDrinkThumb; 
-          const drinkIngredients = []; // creating list/array of all drink ingredients 
+          let drinkName = drink.strDrink; 
+          let drinkRecipe = drink.strInstructions; 
+          let drinkImage = drink.strDrinkThumb; 
+          let drinkIngredients = []; // creating list/array of all drink ingredients 
           
           // Using a For Loop to extract each ingredient from json data and adding it to the drinkIngredient array
           for (let i = 1; i <= 15; i++) {
-              const ingredient = drink[`strIngredient${i}`];
+            let ingredient = drink[`strIngredient${i}`];
               if (ingredient) {
                   drinkIngredients.push(ingredient);
               } else {
@@ -447,7 +447,7 @@ function fetchMarvelData(globalHighestScoreCharacter) {
 
 function displayCharacterData(characterData) {
   const answerChoicesContainer = document.getElementById('answer-choices');
-
+  fetchCocktailAPI();
   // Access the additional information from the charactersInfo object
   const extraInfo = charactersInfo[characterData.name];
 
@@ -459,11 +459,27 @@ function displayCharacterData(characterData) {
   <p><span class="red-bold">Abilities:</span> ${extraInfo.abilities}</p>
   <p><span class="red-bold">Popular Movies:</span> ${extraInfo.popularMovies.join(', ')}</p>
 `;
-  answerChoicesContainer.innerHTML = htmlContent;
-  const footer = document.getElementById('footer');
-  footer.style.display = "none";
 
-  
+  answerChoicesContainer.innerHTML = htmlContent;
+
+  // Create a new button element
+  let drinkButton = document.createElement('button');
+  // Set the button's ID
+  drinkButton.id = 'drinkGenerator';
+  // Set the button's text
+  drinkButton.textContent = `${characterData.name}'s favorite drink`;
+  drinkButton.classList.add('show');
+
+  answerChoicesContainer.appendChild(drinkButton);
+
+  // Add an event listener to the button
+  drinkButton.addEventListener('click', function() {
+    generateCharacterDrink(characterData.name);
+  });
+
+    const footer = document.getElementById('footer');
+    footer.style.display = "none";
+    
 }
 
 
