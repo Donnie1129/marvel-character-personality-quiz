@@ -16,7 +16,7 @@ User Story:
 - Colors: We used Marvel's white and red colors throughout the app to match the theme
 
 ## App Structure and Features
-- Dynamic Timeblocks: Timeblocks are created dynamically for standard business hours. They are appended to the main container using JavaScript.
+- Dynamic module and quiz Q&A: Both are created dynamically for standard business hours. Each element and styliing is added or updated to the main container using JavaScript.
 - Local Storage: First name of the user is saved to local storage.
 - Color Coding: Each answer is highlighted upon hovering when selecting an answer to a question in the quiz.
 - External Libraries: The app uses Tailwind for styling.
