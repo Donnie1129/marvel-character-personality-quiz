@@ -2,8 +2,6 @@
 ---
 This project is a web application in which a user can take a short personality quiz that generates a Marvel character they most resemble from 5 options, including Black Widow, Deadpool, Captain America, Groot, and Spiderman. We used get requests from both a Marvel API and a cocktail database API in order to show the matching character and a drink they'd theoretically enjoy as well. 
 
-User Story:
-
 ## User Story
 
 ```md
