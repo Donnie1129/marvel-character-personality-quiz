@@ -500,6 +500,7 @@ function generateCharacterDrink() {
       document.getElementById('drinkDisplay').innerHTML = `<p>Sorry, we couldn't fetch the drink.</p>`;
     });
     resetQuizButton.classList.remove('hidden');
+    resetQuizButton.classList.add('mx-auto', 'w-auto');
 }
 
 fetchCocktailAPI();
