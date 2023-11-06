@@ -384,16 +384,18 @@ function calculateCharacterScore() {
 };
 
 
-function characterResults (globalHighestScoreCharacter){
-  console.log ('here is your character');
-
-  //code to change the innerhtml conent of the paragraph/header
-  const questionHeader = document.getElementById ('quiz-question');
-  questionHeader.innerHTML = `You matched with ${globalHighestScoreCharacter}`; 
-  //code to hide the answer buttons
+function characterResults(globalHighestScoreCharacter) {
+  const firstName = localStorage.getItem('firstName'); // Get the user's name from local storage
+  if (firstName) {
+    const resultMessage = `${firstName}, you matched with ${globalHighestScoreCharacter}`;
+    const questionHeader = document.getElementById('quiz-question');
+    questionHeader.textContent = resultMessage;
+  } else {
+    console.log('User name not found in local storage');
+  }
+  // hides the answer buttons
   const answerChoicesContainer = document.getElementById('answer-choices');
   answerChoicesContainer.innerHTML = '';
-
   fetchMarvelData(globalHighestScoreCharacter);
 }
 
