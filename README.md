@@ -11,19 +11,21 @@ User Story:
 ```
 
 ## Webpage Overview
-- Header: Displays the app title, a brief description, and the current date.
-- Main Content: Dynamically generated timeblocks for the hours of 9AM-5PM. Each timeblock consists of an hour label, a textarea for inputting tasks/events, and a save button.
-- Colors: Timeblocks are color-coded based on the current time - past hours are marked in one color, the present hour in another, and future hours in yet another.
+- Header: Displays a message to the user and the questions for the quiz.
+- Main Content: Displays navigation button, quiz questions and answers, and the quiz results
+- Colors: We used Marvel's white and red colors throughout the app to match the theme
 
 ## App Structure and Features
 - Dynamic Timeblocks: Timeblocks are created dynamically for standard business hours. They are appended to the main container using JavaScript.
-- Local Storage: Tasks/events entered into the timeblocks are saved into the browser's local storage. They remain visible even after refreshing the page.
-- Color Coding: Each timeblock is color-coded to indicate whether the time it represents is in the past, present, or future.
-- Date Display: The current date is displayed at the top of the page, making it easy for users to see the day at a glance.
-- External Libraries: The app uses Bootstrap for styling, Font Awesome for icons, Google Fonts for typography, jQuery for JavaScript simplification, and dayjs for date and time management.
+- Local Storage: First name of the user is saved to local storage.
+- Color Coding: Each answer is highlighted upon hovering when selecting an answer to a question in the quiz.
+- External Libraries: The app uses Tailwind for styling.
 
 ## Technologies Used
-
+- Marvel API: https://developer.marvel.com/docs
+- Drink API: www.thecocktaildb.com/api/json/v1/1/random.php
+- Tailwind: https://tailwindcss.com/docs/installation
+- Javascript
 
 ## App Screenshot
 <img width="1368" alt="image" src="https://github.com/Donnie1129/marvel-character-personality-quiz/assets/144064556/b68e37a2-7ae2-4559-91bf-a11848286229">
