@@ -5,11 +5,15 @@ footer {
 .text-5xl {
     font-weight: 900;
     color: white;
+    -webkit-text-stroke-color: rgb(241, 21, 31);
+    -webkit-text-stroke-width: 2.5px;
 }
 
 .text-2xl {
     font-weight: 900;
     color: white;
+    -webkit-text-stroke-color: rgb(241, 21, 31);
+    -webkit-text-stroke-width: 1.5px;
 }
 
 #get-started-btn {
